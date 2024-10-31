@@ -1,0 +1,24 @@
+{
+    "name": "responsive-and-cropping-images",
+    "description": "Responsive and cropping images",
+    "type": "wordpress-plugin",
+    "license": "Private",
+    "authors": [
+        {
+            "name": "Konstantin Melnikov",
+            "email": "cartman.zp@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "predis/predis": "^1.1",
+        "pug-php/pug": "^3.1",
+        "phug/phug": "^0.3.2",
+        "wpmetabox/meta-box": "^4.17"
+    },
+    "autoload": {
+        "psr-4": {
+            "YaroRaci\\": "app/php"
+        }
+    }
+}

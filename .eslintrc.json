@@ -1,0 +1,15 @@
+{
+    "extends": ["airbnb-base"],
+    "env": {
+    	"browser": true
+    },
+    "globals": {
+        "ajaxurl": true
+    },
+    "rules": {
+    	"no-unused-vars": "off",
+    	"no-debugger" : "off",
+        "import/no-unresolved": "off",
+        "import/extensions": "off"
+    }
+}

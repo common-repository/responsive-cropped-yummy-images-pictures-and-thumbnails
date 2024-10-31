@@ -1,0 +1,78 @@
+#vue-content
+  .container-fluid
+    .row
+      .col-md-9
+        .img-container
+          img#croper-image(:src='imageUrl', alt='')
+      .col-md-3
+        .docs-preview.clearfix
+          #new-image.img-preview.preview-lg
+        .docs-preview.clearfix
+          .img-old-preview
+            img#old-image(:src='current.url', alt='')
+    .row
+      .col-md-9.docs-buttons
+        .btn-group.d-flex.flex-wrap(data-toggle='buttons')
+          label.btn.btn-primary(
+            v-for="(size, index) in sizes"
+          )
+            input.sr-only(
+              type='radio'
+              name='aspectRatio'
+              :value='size.ratio'
+            )
+            span.docs-tooltip(
+              data-toggle='tooltip'
+              data-animation='false'
+              v-on:click="changeSize"
+              :title='size.name'
+              :data-current='index'
+            )
+              | {{size.width}}:{{size.height}}
+        .btn-group
+          button.btn.btn-primary(type='button', data-method='setDragMode', data-option='move', title='Move')
+            span.docs-tooltip(
+              data-toggle='tooltip'
+              data-animation='false'
+              title='$().cropper("setDragMode", "move")'
+            )
+              span.dashicons.dashicons-move
+          button.btn.btn-primary(type='button', data-method='setDragMode', data-option='crop', title='Crop')
+            span.docs-tooltip(
+              data-toggle='tooltip'
+              data-animation='false'
+              title='$().cropper("setDragMode", "crop")'
+            )
+              span.dashicons.dashicons-image-crop
+        .btn-group
+          button.btn.btn-primary(type='button', data-method='zoom', data-option='0.1', title='Zoom In')
+            span.docs-tooltip(data-toggle='tooltip', data-animation='false', title='$().cropper("zoom", 0.1)')
+              span.dashicons.dashicons-plus
+          button.btn.btn-primary(type='button', data-method='zoom', data-option='-0.1', title='Zoom Out')
+            span.docs-tooltip(data-toggle='tooltip', data-animation='false', title='$().cropper("zoom", -0.1)')
+              span.dashicons.dashicons-minus
+        .btn-group
+          button.btn.btn-primary(type='button', data-method='reset', title='Reset')
+            span.docs-tooltip(data-toggle='tooltip', data-animation='false', title='$().cropper("reset")')
+              span.dashicons.dashicons-update
+          label.btn.btn-primary.btn-upload(for='inputImage', title='Upload image file')
+            input#inputImage.sr-only.d-none(type='file', name='file', accept='.jpg,.jpeg,.png,.gif,.bmp,.tiff')
+            span.docs-tooltip(data-toggle='tooltip', data-animation='false', title='Import image with Blob URLs')
+              span.dashicons.dashicons-upload
+        .btn-group.btn-group-crop
+          button.btn.btn-success(
+            type='button'
+            v-on:click='save'
+          )
+            span.docs-tooltip(
+              data-toggle='tooltip'
+              data-animation='false'
+              title='Save with max size - full'
+            )
+              | Save with max size - full
+        button.btn.btn-secondary(type='button', data-method='getData', data-option='', data-target='#putData')
+          span.docs-tooltip(data-toggle='tooltip', data-animation='false', title='$().cropper("getData")')
+            | Get Data
+        button.btn.btn-secondary(type='button', data-method='setData', data-target='#putData')
+          span.docs-tooltip(data-toggle='tooltip', data-animation='false', title='$().cropper("setData", data)')
+            | Set Data

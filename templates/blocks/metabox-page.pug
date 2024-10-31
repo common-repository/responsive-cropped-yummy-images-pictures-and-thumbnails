@@ -1,0 +1,17 @@
+.wrap
+  h1
+    | !{header}
+  form#post.boxes(method='post', action='', enctype='multipart/form-data')
+    #poststuff
+      | !{wp_nonce_field_1}
+      | !{wp_nonce_field_2}
+      #post-body.metabox-holder(class='columns-'+columns)
+        if columns > 1;
+          #postbox-container-1.postbox-container
+            | !{side_boxes}
+        #postbox-container-2.postbox-container
+            | !{normal_boxes}
+            | !{advanced_boxes}
+      br.clear
+      p.submit
+        | !{submit_button}

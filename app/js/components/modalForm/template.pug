@@ -1,0 +1,80 @@
+#vue-content(ref="formContainer")
+  .container-fluid
+    .row
+      .col-md-9
+        .img-container
+          img#croper-image(:src='imageUrl', alt='')
+      .col-md-3
+        h5
+          | New image
+        .docs-preview.clearfix
+          #new-image.img-preview.preview-lg
+        h5
+          | Old image
+        .docs-preview.clearfix
+          .img-old-preview
+            img#old-image(:src='current.url', alt='')
+        br
+        br
+        .btn-group.btn-group-crop
+          button.btn.btn-success(
+            type='button'
+            v-on:click='save'
+          )
+            span.docs-tooltip(
+              data-toggle='tooltip'
+              data-animation='false'
+              title='Save cropped image'
+            )
+              | Save cropped image
+        br
+        br
+        .btn-group.btn-group-crop
+          label.btn.btn-primary.btn-upload(for='inputImage', title='Upload image file')
+            input#inputImage.sr-only(
+              type='file'
+              name='file'
+              accept='.jpg,.jpeg,.png,.gif,.bmp,.tiff'
+              v-on:change='upload'
+            )
+            span.docs-tooltip(
+              data-toggle='tooltip'
+              data-animation='false'
+              title='Upload image'
+            )
+              | Upload image for current size
+        br
+        br
+        .btn-group.btn-group-crop
+          button.btn.btn-success(
+            type='button'
+            v-on:click='reset'
+          )
+            span.docs-tooltip(
+              data-toggle='tooltip'
+              data-animation='false'
+              title='Reset image'
+            )
+              | Reset image
+    .row
+      .col-md-12.docs-buttons
+        h4
+          | Image sizes
+        label.btn.btn-primary(
+          v-for="(size, index) in sizes"
+        )
+          input.sr-only(
+            type='radio'
+            name='aspectRatio'
+            :value='size.ratio'
+          )
+          span.docs-tooltip(
+            data-toggle='tooltip'
+            data-animation='false'
+            v-on:click="changeSize"
+            :title='size.name'
+            :data-current='index'
+          )
+            | {{size.width}}x{{size.height}}
+            span(:data-current='index')
+              | {{size.name}}
